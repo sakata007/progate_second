@@ -1,1 +1,5 @@
 レッスン４　の６から次スタート
+
+destroyエラーに関する記事　　 https://teratail.com/questions/256667
+ value="<%=@user.name %>"
+  value="<%=@user.email %>"

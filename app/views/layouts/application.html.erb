@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <title>TweetApp</title>
@@ -15,9 +16,17 @@
       <%= link_to("TweetAppとは", "/about") %>
       <%= link_to("投稿一覧","/posts/index") %>
       <%= link_to("新規投稿","/posts/new") %>
+      <%= link_to("ユーザー一覧","/users/index") %>
+      <%= link_to("新規登録","/signup") %>
       </div>
     </ul>
   </header>
+  <!-- flash[:notice]に代入されたメッセージを表示してください -->
+    <% if flash[:notice] %>
+      <div class="flash">
+          <%= flash[:notice] %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
