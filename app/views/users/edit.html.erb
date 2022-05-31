@@ -6,10 +6,10 @@
         <p>ユーザー名</p>
         <%= form_tag("/users/#{@user.id}/update") do %>
         <!-- nameを初期値として表示してください -->
-        <input>
+        <input value="<%= @user.name %>" name="name">
         <p>メールアドレス</p>
         <!-- emailを初期値として表示してください -->
-        <input>
+        <input value="<%= @user.email %>" name="email">
         <input type="submit" value="保存">
         <% end %>
         <%= @post.name %>
