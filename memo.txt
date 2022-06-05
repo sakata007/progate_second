@@ -3,3 +3,109 @@
 destroyエラーに関する記事　　 https://teratail.com/questions/256667
  value="<%=@user.name %>"
   value="<%=@user.email %>"
+
+  sakatawataru@sakatawatarunoMacBook-Pro local_app % rails db:migrate
+== 20220604232116 AddPasswordToUsers: migrating ===============================
+-- add_column(:user, :password, :string)
+rails aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+
+Caused by:
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+
+Caused by:
+SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+sakatawataru@sakatawatarunoMacBook-Pro local_app % rails db:migrate
+== 20220604232116 AddPasswordToUsers: migrating ===============================
+-- add_column(:user, :password, :string)
+rails aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+
+Caused by:
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+
+Caused by:
+SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+sakatawataru@sakatawatarunoMacBook-Pro local_app % rails db:migrate
+== 20220604232116 AddPasswordToUsers: migrating ===============================
+-- add_column(:user, :password, :string)
+rails aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+
+Caused by:
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+
+Caused by:
+SQLite3::SQLException: no such table: user
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+sakatawataru@sakatawatarunoMacBook-Pro local_app % rails db:migrate
+== 20220604232116 AddPasswordToUsers: migrating ===============================
+-- add_column(:users, :password, :string)
+rails aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+SQLite3::SQLException: duplicate column name: password
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+
+Caused by:
+ActiveRecord::StatementInvalid: SQLite3::SQLException: duplicate column name: password
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+
+Caused by:
+SQLite3::SQLException: duplicate column name: password
+/Users/sakatawataru/local_app/db/migrate/20220604232116_add_password_to_users.rb:3:in `change'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+sakatawataru@sakatawatarunoMacBook-Pro local_app % rails db:migrate:reset
+Dropped database 'db/development.sqlite3'
+Database 'db/test.sqlite3' does not exist
+Created database 'db/development.sqlite3'
+Created database 'db/test.sqlite3'
+== 20220523023722 CreatePosts: migrating ======================================
+-- create_table(:posts)
+   -> 0.0023s
+== 20220523023722 CreatePosts: migrated (0.0023s) =============================
+
+== 20220526063234 CreateUsers: migrating ======================================
+-- create_table(:users)
+   -> 0.0019s
+== 20220526063234 CreateUsers: migrated (0.0020s) =============================
+
+== 20220604232116 AddPasswordToUsers: migrating ===============================
+-- add_column(:users, :password, :string)
+   -> 0.0023s
+== 20220604232116 AddPasswordToUsers: migrated (0.0024s) ======================
+
+sakatawataru@sakatawatarunoMacBook-Pro local_app % rails db:rollback
+== 20220604232116 AddPasswordToUsers: reverting ===============================
+-- remove_column(:users, :password, :string)
+   -> 0.0109s
+== 20220604232116 AddPasswordToUsers: reverted (0.0177s) ======================
+
+sakatawataru@sakatawatarunoMacBook-Pro local_app % rails db:rollback
+== 20220526063234 CreateUsers: reverting ======================================
+-- drop_table(:users)
+   -> 0.0019s
+== 20220526063234 CreateUsers: reverted (0.0058s) =============================
+
+sakatawataru@sakatawatarunoMacBook-Pro local_app % 
