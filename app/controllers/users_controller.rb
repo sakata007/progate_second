@@ -64,5 +64,8 @@ class UsersController < ApplicationController
     redirect_to("/login")
   end
 
+  def likes
+  end
+
 
 end

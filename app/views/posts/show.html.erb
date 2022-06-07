@@ -15,10 +15,12 @@
       </div>
 
       <% if Like.find_by(user_id:@current_user.id, post_id:@post.id) %>
-        いいね澄み
+        <%= button_to "いいね済み", "/likes/#{@post.id}/destroy" %>
       <% else %>
         <%= button_to "いいね！", "/likes/#{@post.id}/create" %>
       <% end %>
+
+      <%= @likes_count%>
 
 
       <div class="post-menus">
