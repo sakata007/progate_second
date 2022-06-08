@@ -48,6 +48,9 @@ gem "bootsnap", require: false
 #エラーメッセージに日本語化のため追記
 gem 'rails-i18n'
 
+# パスワードハッシュ化のため追記
+gem 'bcrypt'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
