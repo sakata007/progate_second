@@ -38,6 +38,11 @@ class UsersController < ApplicationController
     @user = User.find_by(id:params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
+    if params[:image]
+      @user.image_name = "#{@user.id}.jpg"
+      image = params[:image]
+      File.binwrite("/public/user_images/#{@user.image_name}", image.read)
+    end
     @user.save
   end
 

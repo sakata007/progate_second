@@ -7,6 +7,9 @@
         <%= form_tag("/users/#{@user.id}/update") do %>
         <!-- nameを初期値として表示してください -->
         <input value="<%= @user.name %>" name="name">
+        <%= form_tag("/users/#{@user.id}/update", {multipart:true})%>
+        <p>画像</p>
+        <input name="image" type="file">
         <p>メールアドレス</p>
         <!-- emailを初期値として表示してください -->
         <input value="<%= @user.email %>" name="email">

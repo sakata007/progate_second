@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :products
   get 'users/index' => "users#index"
   get "users/:id" => "users#show"
   get "signup" => "users#new"
