@@ -4,11 +4,22 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user ,{only: [:edit, :update]}
 
   def index
-    @users = User.all
+    # 以下をフォロー機能のために変更
+    @users = User.where.not(id: @current_user.id)
+  end
+
+  def followings
+    user = User.find_by(id: params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    user = User.find_by(id: params[:id])
+    @users = user.followers
   end
 
   def show
-    @user = User.find_by(id:params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   def new
