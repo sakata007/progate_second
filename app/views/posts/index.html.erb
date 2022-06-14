@@ -8,10 +8,11 @@
         </div>
         <div class="post-right">
           <div class="post-user-name">
-            <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
+            <!-- 下記の行でエラー発生 -->
             <%= link_to(post.user.name, "/users/#{post.user.id}")%>
           </div>
-          <%= link_to(post.content, "/posts/#{post.id}") %>
+          <%= link_to(post.content, "/posts/#{post.id}") %> 
+          <i class="far fa-clock clock-icon"></i><%= time_ago_in_words(post.created_at) %>前
         </div>
       </div>
 
