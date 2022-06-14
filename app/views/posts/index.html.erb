@@ -13,8 +13,8 @@
           </div>
           <%= link_to(post.content, "/posts/#{post.id}") %> 
           <i class="far fa-clock clock-icon"></i><%= time_ago_in_words(post.created_at) %>前
-          <!-- いいね数カウントのため追記 -->
-          <% if Like.find_by(user_id:post.user.id, post_id:post.id) %>
+          <!-- いいね数カウントのため追記 post.user.id -->
+          <% if Like.find_by(user_id:post.user, post_id:post.id) %>
             <%= button_to "/likes/#{post.id}/destroy" do %>
               <span class="fa fa-heart liked-btn"></span>
             <% end %>
