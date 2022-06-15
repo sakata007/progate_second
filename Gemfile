@@ -43,13 +43,17 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
- gem "sass-rails"
+gem "sass-rails"
 
 #エラーメッセージに日本語化のため追記
 gem 'rails-i18n'
 
 # パスワードハッシュ化のため追記
 #gem 'bcrypt'
+
+# 画像投稿機能のため追記
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

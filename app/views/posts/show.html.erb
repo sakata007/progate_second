@@ -26,6 +26,13 @@
 
       <%= @likes_count%>
 
+      <!--投稿画像表示-->
+      <%= image_tag @user.image.thumb.url %>
+
+      <%= f.label :post_image%>
+        <%= f.file_field :post_image%>
+        <%= f.hidden_field :post_image_cache %>
+
 
       <div class="post-menus">
       <% if @user.id == @current_user.id %>

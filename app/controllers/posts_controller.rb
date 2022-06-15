@@ -61,4 +61,9 @@ class PostsController < ApplicationController
     end
   end
 
+  # 画像投稿のため追記
+  def post_params
+    params.require(:post).permit(:title, :text, :img)
+  end
+
 end
