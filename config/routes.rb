@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :users do
     resource :relationships, only: [:create, :destroy]
-    get :followings, on: :member
-    get :followers, on: :member
-    end
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
   get 'users/index' => "users#index"
   get "users/:id" => "users#show"
   get "signup" => "users#new"
