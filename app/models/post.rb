@@ -8,4 +8,6 @@ class Post < ApplicationRecord
         return User.find_by(id: self.id)
     end
 
+
+
 end
