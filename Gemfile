@@ -48,6 +48,9 @@ gem "bootsnap", require: false
 #エラーメッセージに日本語化のため追記
 gem 'rails-i18n'
 
+gem 'carrierwave'
+
+
 # パスワードハッシュ化のため追記
 #gem 'bcrypt'
 
