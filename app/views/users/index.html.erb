@@ -1,3 +1,5 @@
+
+
 <div class="main users-index">
   <div class="container">
     <h1 class="users-heading">ユーザー一覧</h1>
@@ -7,6 +9,16 @@
         <div class="user-right">
           <!-- 以下の<%= %>を使ってユーザー名を表示してください -->
           <%= link_to(user.name,"/users/#{user.id}") %>
+
+
+        <!-- フォロー機能 -->
+      <% if @current_user != user %>
+        <!--% if user.followed_by?(@current_user) %-->
+            <p><%=button_to "フォロー解除", user_relationships_path(user.id), method: :delete %></p>
+        <!--% else %-->
+            <p><%=button_to "フォローする", user_relationships_path(user.id) %></p>
+        <% end %>
+      <!--% end %-->
 
         </div>
       </div>

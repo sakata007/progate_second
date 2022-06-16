@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  resources :users do
-    resource :relationships, only: [:create, :destroy]
-    get :followings, on: :member
-    get :followers, on: :member
-  end
+
   get 'users/index' => "users#index"
   get "users/:id" => "users#show"
   get "signup" => "users#new"
@@ -26,6 +22,11 @@ Rails.application.routes.draw do
   get "posts/:id/destroy" => "posts#destroy"
   get "users/:id/edit" => "users#edit"
   get "posts/:id" => "posts#show"
+  resources :users do
+    resource :relationships, only: [:create, :destroy]
+    get :followings, on: :member
+    get :followers, on: :member
+  end
   
   # Defines the root path route ("/")
   # root "articles#index"

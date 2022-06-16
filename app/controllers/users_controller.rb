@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   def index
     # 以下をフォロー機能のために変更
-    @users = User.where.not(id: @current_user.id)
+    # @users = User.where.not(id: @current_user.id)
+    @users = User.all
   end
 
   def followings
