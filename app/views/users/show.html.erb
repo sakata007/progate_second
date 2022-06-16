@@ -1,23 +1,25 @@
 <div class="main user-show">
     <div class="container">
     <div class="user">
-        <!-- 以下で、ユーザー名を出力してください -->
-        <h2><%= @user.name %></h2>
-        <!-- 以下で、メールアドレスを出力してください -->
-        <p><%= @user.email %></p>
+    <% if @user %>
+            <!-- 以下で、ユーザー名を出力してください -->
+            <h2><%= @user.name %></h2>
+            <!-- 以下で、メールアドレスを出力してください -->
+            <p><%= @user.email %></p>
+
     </div>
 
-    <% if @user.id == @current_user.id %>
+        <% if @user.id == @current_user.id %>
         <%= button_to "編集", "/users/#{@user.id}/edit", {method: :get}  %>
-    <% else %>
-        <!--フォローボタン設定のため追記 -->
-        <% if @user.is_followed_by?(@current_user)%>
-            <%= button_to "フォロー", user_relationships_path(@user) %>
         <% else %>
-            <%= button_to "フォロー解除", user_relationships_path(@user), {method: :delete} %>
+            <!--フォローボタン設定のため追記 -->
+            <% if @user.is_followed_by?(@current_user)%>
+                <%= button_to "フォロー", user_relationships_path(@user) %>
+            <% else %>
+                <%= button_to "フォロー解除", user_relationships_path(@user), {method: :delete} %>
+            <% end %>
         <% end %>
 
-    <% end %>
     </div>
 
     <%  @user.posts.each do |post| %>
@@ -35,4 +37,5 @@
         </div>
     </div>
         <% end %>
+    <% end %>
 </div>
