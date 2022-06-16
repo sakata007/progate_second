@@ -13,12 +13,12 @@
         <%= button_to "編集", "/users/#{@user.id}/edit", {method: :get}  %>
         <% else %>
             <!--フォローボタン設定のため追記 -->
-            <!--% if @user.followed_by?(@current_user)%-->
+            <% if @user.followed_by?(@current_user)%>
                 <%= button_to "フォロー解除", user_relationships_path(@user), {method: :delete} %>
                 
-            <!--% else %-->
+            <% else %>
                 <%= button_to "フォロー", user_relationships_path(@user) %>
-            <!--% end %-->
+            <% end %>
         <% end %>
 
     </div>

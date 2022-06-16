@@ -5,10 +5,11 @@
     <div class="posts-index-item">
 
       <% @posts.each do |post| %>
+      <% if %>
         <div class="posts-index-item">
         <%= link_to(post.content, "/posts/#{post.id}") %>
         </div>
-
+      <% end %>
 
     <% end %>
 
