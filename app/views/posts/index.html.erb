@@ -9,6 +9,9 @@
       <% if @current_user.following?(post.user)  %>
         <div class="posts-index-item">
         <%= link_to(post.content, "/posts/#{post.id}") %>
+
+        
+        <i class="far fa-clock clock-icon"></i><%= time_ago_in_words(post.created_at) %>前
         </div>
       <% end %>
 
