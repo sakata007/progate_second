@@ -5,7 +5,8 @@
     <div class="posts-index-item">
 
       <% @posts.each do |post| %>
-      <% if %>
+
+      <% if @current_user.following?(post.user)  %>
         <div class="posts-index-item">
         <%= link_to(post.content, "/posts/#{post.id}") %>
         </div>
