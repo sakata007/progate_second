@@ -21,6 +21,11 @@
     <%= form.label :image, style: "display: block" %>
     <%= form.text_area :image %>
   </div>
+  <%-- 画像投稿のため追記 -->
+  <div>
+    <%= form.label :画像 %>
+    <%= form.file_field :image, class: "image" %>
+  </div>
 
   <div>
     <%= form.submit %>

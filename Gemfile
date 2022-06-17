@@ -52,7 +52,7 @@ gem 'rails-i18n'
 gem 'bcrypt'
 
 # 画像
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'rmagick'
 
 

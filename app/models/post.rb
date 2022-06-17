@@ -2,6 +2,8 @@ class Post < ApplicationRecord
     validates :content, {presence: true, length: {maximum:140} }
     validates :user_id, {presence: true}
 
+    mount_uploader :image, :ImageUploader
+
     def user
         return User.find_by(id:self.user_id)
     end
@@ -10,7 +12,7 @@ class Post < ApplicationRecord
     def likes_count
         return Like.where(post_id:self.id).count
     end
-    
+
     # フォローしたときの処理
     # def follow(user_id)
     #     relationships.create(follower_id: user_id)

@@ -62,4 +62,9 @@ class PostsController < ApplicationController
     end
   end
 
+  # 画像投稿機能？？
+  def user_params
+    params.require(:user).permit(:name, :age, :img) 
+  end
+
 end
