@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'users/index' => "users#index"
   get "users/:id" => "users#show"
   get "signup" => "users#new"
@@ -11,7 +12,9 @@ Rails.application.routes.draw do
   post "posts/create" => "posts#create"
   get "login" => "users#login_form"
   post "login" => "users#login"
-  post "logout" => "users#logout"  
+  post "logout" => "users#logout"
+  get "users/:id/followings_index" => "users#followings_index"
+  get "users/:id/followers_index" => "users#followers_index"
   post "likes/:post_id/create" => "likes#create"
   post "likes/:post_id/destroy" => "likes#destroy"
   get "users/:id/likes" => "users#likes"
@@ -21,6 +24,11 @@ Rails.application.routes.draw do
   get "posts/:id/destroy" => "posts#destroy"
   get "users/:id/edit" => "users#edit"
   get "posts/:id" => "posts#show"
+  resources :users do
+    resource :relationships, only: [:create, :destroy]
+    get :followings, on: :member
+    get :followers, on: :member
+  end
   
   # Defines the root path route ("/")
   # root "articles#index"

@@ -4,11 +4,37 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user ,{only: [:edit, :update]}
 
   def index
+    # 以下をフォロー機能のために変更
+    # @users = User.where.not(id: @current_user.id)
     @users = User.all
   end
 
+  def followings
+    user = User.find_by(id: params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    user = User.find_by(id: params[:id])
+    @users = user.followers
+  end
+
+  def followings_index
+    # 以下をフォロー機能のために変更
+    # @users = User.where.not(id: @current_user.id)
+    @users = User.all
+  end
+
+  def followers_index
+    # 以下をフォロー機能のために変更
+    # @users = User.where.not(id: @current_user.id)
+    @users = User.all
+  end
+
+
+
   def show
-    @user = User.find_by(id:params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   def new
@@ -38,7 +64,13 @@ class UsersController < ApplicationController
     @user = User.find_by(id:params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
+    if params[:image]
+      @user.image_name = "#{@user.id}.jpg"
+      image = params[:image]
+      # File.binwrite("/public/user_images/#{@user.image_name}", image.read)
+    end
     @user.save
+    redirect_to ("/users/#{@user.id}")
   end
 
   def login_form
@@ -67,6 +99,8 @@ class UsersController < ApplicationController
 
   def likes
   end
+
+
 
 
 end

@@ -1,8 +1,23 @@
+<div class="main posts-new">
+  <div class="container">
 
+  </div>
+</div>
 
 <div class="main posts-index">
   <div class="container">
+
+
     <div class="posts-index-item">
+            <h1 class="form-heading">投稿する</h1>
+        <% @post.errors.full_messages.each do |message|%>
+      <%= message %>
+    <%end%>
+        <%= form_tag("/posts/create") do %>
+            <textarea name="content"><%= @post.content %></textarea>
+            <input type="submit" value="投稿">
+        <% end %>
+                    <h1 class="form-heading">投稿一覧</h1>
 
       <% @posts.each do |post| %>
 
@@ -10,9 +25,22 @@
         <div class="posts-index-item">
         <%= link_to(post.content, "/posts/#{post.id}") %>
 
-        
+        <!--　何分前か表示するために追記-->
         <i class="far fa-clock clock-icon"></i><%= time_ago_in_words(post.created_at) %>前
         </div>
+
+        <!--　いいね機能実装のため追記　-->
+      <% if Like.find_by(user_id:@current_user.id, post_id:post.id) %>
+        <%= button_to "/likes/#{post.id}/destroy" do %>
+          <span class="fa fa-heart liked-btn"></span>
+        <% end %>
+      <% else %>
+        <%= button_to "/likes/#{post.id}/create" do %>
+        <span class="fa fa-heart liked-btn"></span>
+        <% end %>
+      <% end %>
+
+      <%= post.likes_count%>
       <% end %>
 
     <% end %>
