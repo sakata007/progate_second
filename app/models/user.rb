@@ -29,4 +29,8 @@ class User < ApplicationRecord
         relationships.find_by(following_id: user.id).present?
     end
 
+    def following?(user)
+        relationships.find_by(follower_id: user.id).present?
+    end
+
 end
