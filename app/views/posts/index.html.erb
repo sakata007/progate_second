@@ -41,6 +41,12 @@
       <% end %>
 
       <%= post.likes_count%>
+
+      <% end %>
+
+      <%= form_for @post do |f| %>
+        <%= f.file_field :image %>
+        <%= f.submit 'アップロードする'%>
       <% end %>
 
     <% end %>

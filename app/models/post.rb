@@ -4,6 +4,9 @@ class Post < ApplicationRecord
 
     mount_uploader :image, :ImageUploader
 
+    # 画像投稿実装のため追記
+    #has_one_attached :image
+
     def user
         return User.find_by(id:self.user_id)
     end
