@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   before_action :posts_ensure_correct_user, {only: [:edit, :update, :destroy]}
   def index
     @posts = Post.all.order(created_at: :desc)
+    # 新規投稿追加のため追記
+    @post = Post.new
     
   end
 
@@ -58,6 +60,11 @@ class PostsController < ApplicationController
       flash[:notice] = "権限がありません"
       redirect_to("/posts/index")
     end
+  end
+
+  # 画像投稿機能？？
+  def user_params
+    params.require(:user).permit(:name, :age, :img) 
   end
 
 end

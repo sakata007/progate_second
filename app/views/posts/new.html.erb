@@ -6,6 +6,13 @@
     <%end%>
         <%= form_tag("/posts/create") do %>
             <textarea name="content"><%= @post.content %></textarea>
+            <%-- 画像投稿 -->
+            <% if @user.img? %> 
+              <p>
+              <strong>post img:</strong>
+              <%= image_tag @user.img.url %>
+              </p>
+            <% end %>
             <input type="submit" value="投稿">
         <% end %>
   </div>
