@@ -4,23 +4,24 @@
     <div class="container">
         <h1 class="users-heading">フォロワー一覧</h1>
         <!-- 以下の<% %>を使ってeach文を追加してください -->
-        <% @users.each do |user| %>        
-            <div class="users-index-item">
-            <div class="user-right">
-            <!-- 以下の<%= %>を使ってユーザー名を表示してください -->
-            <% if user.following?(@current_user)%>
-            <%= link_to(user.name,"/users/#{user.id}") %>
-                <% if @current_user.following?(user)%>
-                    <p><%=button_to "フォロー解除", user_relationships_path(user.id), method: :delete %></p>
-                <% else %>
-                    <p><%=button_to "フォロー", user_relationships_path(user.id)%></p>
-                <% end %>
+        <% @users.each do |user| %>
+            <% if user.following?(@current_user)%>        
+                <div class="users-index-item">
+                    <div class="user-left">
+                        <img src="<%= "/user_images/#{user.image_name}"%>">
+                    </div>
+                    <div class="user-right">
+                        <%= link_to(user.name,"/users/#{user.id}") %>
+                        <% if @current_user.following?(user)%>
+                            <p><%=button_to "フォロー解除", user_relationships_path(user.id), method: :delete %></p>
+                        <% else %>
+                            <p><%=button_to "フォロー", user_relationships_path(user.id)%></p>
+                        <% end %>
+                    </div>
+                </div>
             <% end %>
-
-
-            </div>
-            </div>
     <!-- 以下の<% %>を使ってeach文のendを追加してください -->
         <% end %>
     </div>
 </div>
+
