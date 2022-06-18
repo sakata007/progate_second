@@ -2,11 +2,12 @@
   <div class="container">
     <div class="posts-show-item">
       <div class="post-user-name">
-
-        <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
         <%= link_to(@user.name, "/users/#{@post.user_id}") %> 
       </div>
-
+      <!-- 画像投稿-->
+      <div class="post-image-original">
+        <img src="<%= "/post_images/#{@post.image}" %>">
+      </div>
       <%= @post.content %>
 
       <div class="post-time">
