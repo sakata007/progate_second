@@ -5,15 +5,17 @@ class User < ApplicationRecord
     validates :name, {presence: true}
     validates :email, {presence: true, uniqueness: true}
 
+
+
     # フォローした、されたの関係
-    has_many :relationships, foreign_key: "following_id"
-    has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "follower_id"
+    has_many :relationships, foreign_key: "following_id", dependent: :destroy
+    has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
 
     # 一覧画面で使う
     # 自分がフォローしている人全員を取得
-    has_many :followings, through: :relationships, source: :follower
+    has_many :followings, through: :relationships, source: :follower, dependent: :destroy
     # 自分のことをフォローしている人 （＝ 自分から見れば「フォロワー」）全員を取得
-    has_many :follower, through: :reverse_of_relationships, source: :following
+    has_many :followers, through: :reverse_of_relationships, source: :following, dependent: :destroy
 
 
 
@@ -31,6 +33,14 @@ class User < ApplicationRecord
 
     def following?(user)
         relationships.find_by(follower_id: user.id).present?
+    end
+    # 何人をフォローしている？フォローしている人何人？
+    def how_many_followings?
+        return relationships.where(following_id: self.id).count
+    end
+    # 何人にフォローされている？自分のことをフォローしてくれている人何人？
+    def how_many_followers?
+        return reverse_of_relationships.where(follower_id: self.id).count
     end
 
 end

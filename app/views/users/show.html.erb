@@ -6,8 +6,12 @@
             <!-- 以下で、ユーザー名を出力してください -->
             <h2><%= @user.name %></h2>
             <!-- 以下で、メールアドレスを出力してください -->
-            <p><%= @user.email %></p>
+            <% if @user.id == @current_user.id %>
+                <p><%= @user.email %></p>
+            <% end %>
 
+            <%= link_to(@user.how_many_followings?, "/users/#{@current_user.id}/followings_index") %>フォロー          
+            <%= link_to(@user.how_many_followers?, "/users/#{@current_user.id}/followers_index") %>フォロワー
     </div>
 
         <% if @user.id == @current_user.id %>
@@ -41,3 +45,4 @@
         <% end %>
     <% end %>
 </div>
+
