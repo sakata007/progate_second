@@ -22,14 +22,23 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(
       content:params[:content],
-      user_id: @current_user.id )
-      
-    if @post.save
-      flash[:notice] = "投稿を作成しました"
-      redirect_to("/posts/index")
-    else
-      render("posts/new")
-    end
+      user_id: @current_user.id,
+      # 画像のファイル名をimageカラムに保存
+      image: "default_user.jpg")
+      # 画像があったらpublicに保存
+      if params[:image]            
+        @post.image = "#{@post.id}.jpg"            
+        image = params[:image]            
+        File.binwrite("public/post_images/#{@post.image}",  params[:image].read)
+          # , image.read)
+      end
+
+      if @post.save
+        flash[:notice] = "投稿を作成しました"
+        redirect_to("/posts/index")
+      else
+        render("posts/new")
+      end
   end
 
   def edit
@@ -40,9 +49,8 @@ class PostsController < ApplicationController
     @post = Post.find_by(id:params[:id])
     @post.content = params[:content]
     if params[:image]            
-      @post.image = "#{@post.id}.jpg"            
-      image = params[:image]            
-      File.binwrite("public/post_images/#{@post.image}", image.read)
+      @post.image = "#{@post.id}.jpg"                        
+      File.binwrite("public/post_images/#{@post.image}", params[:image].read)
     end
     if @post.save
       flash[:notice] = "投稿を編集しました"
