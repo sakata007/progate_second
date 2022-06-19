@@ -51,10 +51,14 @@ gem 'rails-i18n'
 # パスワードハッシュ化のため追記
 gem 'bcrypt'
 
-# 画像
-gem 'carrierwave', '~> 1.3', '>= 1.3.1'
-gem 'rmagick'
+#画像
+gem 'rmagick' 
 
+
+# bundle exec rake doc:rails generates the API under doc/api.
+
+
+gem 'carrierwave'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

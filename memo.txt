@@ -1,0 +1,5 @@
+        <!-- 画像投稿 -->
+        <p>画像</p>
+        <input name="image" type="file">
+        <textarea name="content"><%= @post.content %></textarea>
+        <input type="submit" value="投稿">

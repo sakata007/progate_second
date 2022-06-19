@@ -11,10 +11,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by(id:params[:id])
     @user = @post.user
-    @likes_count = Like.where(post_id: params[:id]).count
-    @followings_count = followers.where(follower_id:@user_id).count
-    # @followers_count
-  
+    @likes_count = Like.where(post_id: params[:id]).count  
   end
 
   def new
@@ -25,14 +22,14 @@ class PostsController < ApplicationController
     @post = Post.new(
       content:params[:content],
       user_id: @current_user.id,
-      # 画像のファイル名をimageカラムに保存
       image: "default_user.jpg")
+      # 画像のファイル名をimageカラムに保存
+
       # 画像があったらpublicに保存
-      if params[:image]            
-        @post.image = "#{@post.id}.jpg"            
-        image = params[:image]            
+      if params[:image] 
+        @post.image = "1.jpg"            
+        # image = params[:image]            
         # File.binwrite("public/post_images/#{@post.image}",  params[:image].read)
-          # , image.read)
       end
 
       if @post.save
