@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   before_action :authenticate_user
   before_action :posts_ensure_correct_user, {only: [:edit, :update, :destroy]}
   def index
@@ -21,15 +23,14 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(
       content:params[:content],
-      user_id: @current_user.id,
-      image: "default_user.jpg")
+      user_id: @current_user.id)
       # 画像のファイル名をimageカラムに保存
 
       # 画像があったらpublicに保存
       if params[:image] 
-        @post.image = "1.jpg"            
+        @post.image = "#{@post.id}.jpg"            
         # image = params[:image]            
-        # File.binwrite("public/post_images/#{@post.image}",  params[:image].read)
+        File.binwrite("public/post_images/#{@post.image}", params[:image].read)
       end
 
       if @post.save

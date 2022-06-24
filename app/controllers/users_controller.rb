@@ -100,6 +100,11 @@ class UsersController < ApplicationController
   def likes
   end
 
+  private
+  def user_params
+    params.require(:user).permit(:image)
+  end
+
 
 
 
