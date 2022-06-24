@@ -12,11 +12,12 @@
                     </div>
                     <div class="user-right">
                         <%= link_to(user.name,"/users/#{user.id}") %>
-                        <% if @user.following?(user)%>
-                            <p><%=button_to "フォロー解除", user_relationships_path(user.id), method: :delete %></p>
-                        <% else %>
-                            <p><%=button_to "フォロー", user_relationships_path(user.id)%></p>
-                        <% end %>
+                            <% if @user.following?(user)%>
+                                <p><%=button_to "フォロー解除", user_relationships_path(user.id), method: :delete %></p>
+                            <% else %>
+                                <p><%=button_to "フォロー", user_relationships_path(user.id)%></p>
+                            <% end %>
+                        <% end %>    
                     </div>
                 </div>
             <% end %>

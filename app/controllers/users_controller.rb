@@ -22,12 +22,14 @@ class UsersController < ApplicationController
   def followings_index
     # 以下をフォロー機能のために変更
     # @users = User.where.not(id: @current_user.id)
+    @user = User.find(params[:id])
     @users = User.all
   end
 
   def followers_index
     # 以下をフォロー機能のために変更
     # @users = User.where.not(id: @current_user.id)
+    @user = User.find(params[:id])
     @users = User.all
   end
 

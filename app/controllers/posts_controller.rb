@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user
   before_action :posts_ensure_correct_user, {only: [:edit, :update, :destroy]}
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     # @posts = Post.all.order(created_at: :desc)
     # 新規投稿追加のため追記
     @post = Post.new
@@ -24,16 +24,16 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(
       content:params[:content],
-      user_id: @current_user.id
+      user_id: @current_user.id,
+      image: "no-image.png"
     )
       # 画像のファイル名をimageカラムに保存
-
+    @post.save
       # 画像があったらpublicに保存
-      if params[:image] 
-        @post.image = "#{@post.id}.jpg"            
-        image = params[:image]            
-        File.binwrite("public/post_images/#{@post.image}", image.read)
-      end
+        if params[:image]  
+          @post.image = "#{@post.id}.jpg"                        
+          File.binwrite("public/post_images/#{@post.image}", params[:image].read)
+        end
 
       if @post.save
         flash[:notice] = "投稿を作成しました"
