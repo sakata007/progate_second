@@ -1,5 +1,24 @@
-        <!-- 画像投稿 -->
-        <p>画像</p>
-        <input name="image" type="file">
-        <textarea name="content"><%= @post.content %></textarea>
-        <input type="submit" value="投稿">
+<% if @current_user.following?(post.user) || post.user_id == @current_user.id %>
+          <div class="posts-index-item">
+            <!-- 画像投稿-->
+            <div class="post-image-original">
+              <img src="<%= "/post_images/#{post.image}" %>">
+            </div>
+            <%= link_to(post.content, "/posts/#{post.id}") %>
+            <!-- 何分前か表示するために追記-->
+            <i class="far fa-clock clock-icon"></i><%= time_ago_in_words(post.created_at) %>前
+
+
+            <!-- いいね機能実装のため追記 -->
+            <% if Like.find_by(user_id:@current_user.id, post_id:post.id) %>
+              <%= button_to "/likes/#{post.id}/destroy" do %>
+                <span class="fa fa-heart liked-btn",style="color: #ff0000;"></span>
+              <% end %>
+            <% else %>
+              <%= button_to "/likes/#{post.id}/create" do %>
+              <span class="fa fa-heart liked-btn"></span>
+              <% end %>
+            <% end %>
+            <%= post.likes_count%>
+          </div>
+        <% end %>

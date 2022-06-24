@@ -1,48 +1,52 @@
 <div class="main user-show">
     <div class="container">
-    <div class="user">
-    <% if @user %>
-            <img src="<%= "/user_images/#{@user.image_name}"%>">
-            <!-- 以下で、ユーザー名を出力してください -->
-            <h2><%= @user.name %></h2>
-            <!-- 以下で、メールアドレスを出力してください -->
-            <% if @user.id == @current_user.id %>
-                <p><%= @user.email %></p>
-            <% end %>
+        <div class="user">
+            <% if @user %>
+                <img src="<%= "/user_images/#{@user.image_name}"%>">
+                <!-- 以下で、ユーザー名を出力してください -->
+                <h2><%= @user.name %></h2>
+                <!-- 以下で、メールアドレスを出力してください -->
+                    <% if @user.id == @current_user.id %>
+                        <p><%= @user.email %></p>
+                    <% end %>
 
-            <%= link_to(@user.how_many_followings?, "/users/#{@current_user.id}/followings_index") %>フォロー          
-            <%= link_to(@user.how_many_followers?, "/users/#{@current_user.id}/followers_index") %>フォロワー
-    </div>
-
-        <% if @user.id == @current_user.id %>
-        <%= button_to "編集", "/users/#{@user.id}/edit", {method: :get}  %>
-        <% else %>
-            <!--フォローボタン設定のため追記 -->
-            <% if @user.followed_by?(@current_user)%>
-                <%= button_to "フォロー解除", user_relationships_path(@user), {method: :delete} %>
-                
-            <% else %>
-                <%= button_to "フォロー", user_relationships_path(@user) %>
-            <% end %>
-        <% end %>
-
-    </div>
-
-    <%  @user.posts.each do |post| %>
-        <div class="posts-index-item">
-        <div class="post-left">
-            <!-- ユーザーの画像が表示されるように、以下のsrcに値を追加してください -->
-            <img src="<%= "/user_images/#{@user.image_name}" %>" >
+                    <%= link_to(@user.how_many_followings?, "/users/#{@user.id}/followings_index") %>フォロー          
+                    <%= link_to(@user.how_many_followers?, "/users/#{@user.id}/followers_index") %>フォロワー
         </div>
-        <div class="post-right">
-            <div class="post-user-name">
-            <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
-            <%= link_to(post.user.name, "/users/#{post.user.id}")%>
-        </div>
-            <%= link_to(post.content, "/posts/#{post.id}") %>
-        </div>
-    </div>
-        <% end %>
+
+                <% if @user.id == @current_user.id %>
+                <div class="edit-buttun">
+                    <%= button_to "編集", "/users/#{@user.id}/edit", {method: :get}  %>
+                </div>
+                <% else %>
+                    <!--フォローボタン設定のため追記 -->
+                    <% if @user.followed_by?(@current_user)%>
+                        <%= button_to "フォロー解除", user_relationships_path(@user), {method: :delete} %>
+                        
+                    <% else %>
+                        <%= button_to "フォロー", user_relationships_path(@user) %>
+                    <% end %>
+                <% end %>
+
+
+
+
+                <%  @user.posts.each do |post| %>
+                    <div class="posts-index-item">
+                        <div class="post-left">
+                            <!-- ユーザーの画像が表示されるように、以下のsrcに値を追加してください -->
+                            <img src="<%= "/post_images/#{post.image}" %>">
+                        </div>
+                        <div class="post-right">
+                            <div class="post-user-name">
+                            <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
+                            <%= link_to(post.user.name, "/users/#{post.user.id}")%>
+                        </div>
+                            <%= link_to(post.content, "/posts/#{post.id}") %>
+                        </div>
+                    </div>
+                <% end %>
     <% end %>
+    </div>
 </div>
 

@@ -5,14 +5,14 @@
         <h1 class="users-heading">フォロワー一覧</h1>
         <!-- 以下の<% %>を使ってeach文を追加してください -->
         <% @users.each do |user| %>
-            <% if user.following?(@current_user)%>        
+            <% if user.following?(@user)%>        
                 <div class="users-index-item">
                     <div class="user-left">
                         <img src="<%= "/user_images/#{user.image_name}"%>">
                     </div>
                     <div class="user-right">
                         <%= link_to(user.name,"/users/#{user.id}") %>
-                        <% if @current_user.following?(user)%>
+                        <% if @user.following?(user)%>
                             <p><%=button_to "フォロー解除", user_relationships_path(user.id), method: :delete %></p>
                         <% else %>
                             <p><%=button_to "フォロー", user_relationships_path(user.id)%></p>

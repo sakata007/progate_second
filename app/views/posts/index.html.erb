@@ -7,30 +7,32 @@
         <%= message %>
       <%end%>
 
-  <%= form_tag("/posts/#{@post.id}/create", {multipart: true}) do %>
-  <div class="form">
-      <div class="form-body">
-        <% @post.errors.full_messages.each do |message| %>
-        <%= message %>
-        <% end %>
-        <!-- 画像投稿 -->
-        <p>画像</p>
-        <input name="image" type="file">
-        <textarea name="content"><%= @post.content %></textarea>
-        <input type="submit" value="保存">
-      </div>
-    </div>
-  <% end %>
+      <%= form_tag("/posts/#{@post.id}/create", {multipart: true}) do %>
+      <div class="form">
+          <div class="form-body">
+            <% @post.errors.full_messages.each do |message| %>
+            <%= message %>
+            <% end %>
+            <!-- 画像投稿 -->
+            <p>画像</p>
+            <input name="image" type="file">
+            <textarea name="content"><%= @post.content %></textarea>
+            <input type="submit" value="保存">
+          </div>
+        </div>
+      <% end %>
       <h1 class="form-heading">投稿一覧</h1>
 
-      <% @posts.each do |post| %>
+      <% @posts.each do |post|%>
         <% if @current_user.following?(post.user) || post.user_id == @current_user.id %>
           <div class="posts-index-item">
             <!-- 画像投稿-->
             <div class="post-image-original">
               <img src="<%= "/post_images/#{post.image}" %>">
             </div>
+            <div class="content">
             <%= link_to(post.content, "/posts/#{post.id}") %>
+            </div>
             <!-- 何分前か表示するために追記-->
             <i class="far fa-clock clock-icon"></i><%= time_ago_in_words(post.created_at) %>前
 
